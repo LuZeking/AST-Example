@@ -1,33 +1,41 @@
 import ast
 
+
+def print_example(number, code):
+    print('---- Example {}: {} ----'.format(number, code))
+
+
+
+
 class GenericVisitor(ast.NodeVisitor):
     def generic_visit(self, node):
         print(type(node).__name__)
         ast.NodeVisitor.generic_visit(self, node)
 visitor = GenericVisitor()
 
-print('-- Example 1 --')
 code = 'pressure = 3'
+print_example(1, code)
 result = ast.parse(code, mode='exec')
 visitor.visit(result)
 
-print('-- Example 2 --')
 code = '3'
+print_example(2, code)
 result = ast.parse(code, mode='eval')
 visitor.visit(result)
 
-print('-- Example 3 --')
 code = 'print(3 + 4)'
+print_example(3, code)
 result = ast.parse(code, mode='eval')
 visitor.visit(result)
 
-print('-- Example 4 --')
 code = 'if True:...'
+print_example(5, code)
 result = ast.parse(code)
 visitor.visit(result)
 
-print('-- Example 5 --')
 code = 'if a is True:...'
+print_example(5, code)
+
 result = ast.parse(code)
 visitor.visit(result)
 
@@ -45,9 +53,10 @@ class Visitor(ast.NodeVisitor):
 
 
 visitor = Visitor()
-print('-- Example 6 --')
 code = 'if True:...'
+print_example(6, code)
 result = ast.parse(code)
 visitor.visit(result)
+
 
 
